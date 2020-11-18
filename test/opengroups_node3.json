@@ -1,0 +1,236 @@
+{
+	"node": {
+		"className": "net.segoia.event.eventbus.peers.DefaultEventNode",
+		"config": {
+			"allowServerMode": true,
+			"nodeType":"SERVICE_NODE",
+			"peersManagerConfig": {
+				"peerManagerFactories": {
+					"WSS_V0": {
+						"className": "net.segoia.eventbus.web.ws.v0.PeerManagerV0Factory"
+					},
+					"WSS_WEB_V0": {
+						"className": "net.segoia.eventbus.web.ws.v0.PeerManagerV0Factory"
+					}
+				},
+				"peersConfigs":{
+					"WSS_V1" : {
+						"allowPeerRelays":true
+					}
+				},
+				
+				"agents":[
+					{
+						"className":"net.segoia.event.eventbus.peers.agents.RemotePeersAgent",
+						"channel":"WSS_V1",
+						"autoCreateCondition":{
+							"className":"net.segoia.event.conditions.StrictEventMatchCondition",
+							"et":"PEER:CHAT:MESSAGE"
+						}
+					}
+				]
+			},
+			"securityConfig": {
+				"nodeAuth": {
+					
+				},
+				"identitiesManager": {
+					"className": "net.segoia.event.eventbus.peers.security.DefaultIdentitiesManager",
+					"identitiesRepository": {
+						"className": "net.segoia.event.eventbus.peers.security.InMemoryIdentitiesRepository",
+						"nodeId": "OG_SERVER_NODE"
+					}
+				},
+				"securityPolicy": {
+					"channelsSecurity": {
+						"WSS_V1": {
+							"communicationPolicy": {
+								"supportedTxStrategies": [
+									{
+										"txNodeIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SpkiNodeIdentityType",
+											"type": "SPKI",
+											"algorithm": "RSA",
+											"keySize": 1024
+										},
+										"rxNodeIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SpkiNodeIdentityType",
+											"type": "SPKI",
+											"algorithm": "RSA",
+											"keySize": 1024
+										},
+										"sharedIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SharedIdentityType",
+											"type": "SHARED",
+											"keyDef": {
+												"algorithm": "AES",
+												"keySize": 128
+											}
+										},
+										"sessionTxStrategy": {
+											"operations": [
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.EncryptWithPublicCommOperationDef",
+													"type": "EP",
+													"transformation": "RSA/ECB/PKCS1Padding"
+												},
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.SignCommOperationDef",
+													"type": "S",
+													"hashingAlgorithm": "SHA1withRSA"
+												}
+											]
+										},
+										"directTxStrategy": {
+											"operations": [
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.SignCommOperationDef",
+													"type": "S",
+													"hashingAlgorithm": "SHA1withRSA"
+												},
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.EncryptSymmetricOperationDef",
+													"type": "ES",
+													"transformation": "AES/CBC/PKCS5Padding"
+												}
+											]
+										}
+									}
+								],
+								"supportedRxStrategies": [
+									{
+										"txNodeIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SpkiNodeIdentityType",
+											"type": "SPKI",
+											"algorithm": "RSA",
+											"keySize": 1024
+										},
+										"rxNodeIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SpkiNodeIdentityType",
+											"type": "SPKI",
+											"algorithm": "RSA",
+											"keySize": 1024
+										},
+										"sharedIdentityType": {
+											"className": "net.segoia.event.eventbus.peers.vo.auth.id.SharedIdentityType",
+											"type": "SHARED",
+											"keyDef": {
+												"algorithm": "AES",
+												"keySize": 128
+											}
+										},
+										"sessionTxStrategy": {
+											"operations": [
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.EncryptWithPublicCommOperationDef",
+													"type": "EP",
+													"transformation": "RSA/ECB/PKCS1Padding"
+												},
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.SignCommOperationDef",
+													"type": "S",
+													"hashingAlgorithm": "SHA1withRSA"
+												}
+											]
+										},
+										"directTxStrategy": {
+											"operations": [
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.SignCommOperationDef",
+													"type": "S",
+													"hashingAlgorithm": "SHA1withRSA"
+												},
+												{
+													"className": "net.segoia.event.eventbus.peers.vo.comm.EncryptSymmetricOperationDef",
+													"type": "ES",
+													"transformation": "AES/CBC/PKCS5Padding"
+												}
+											]
+										}
+									}
+								]
+							}
+						}
+					}
+				},
+				"identityLoaders": [
+					{
+						"className": "net.segoia.event.eventbus.peers.security.SpkiPrivateIdentityDataLoader",
+						"indentityDef": {
+							"path": "/home/adi/workspace/projects/event-bus/src/test/resources/keys",
+							"name": "peer4_id",
+							"algorithm": "RSA",
+							"keySize": 1024
+						}
+					}
+				]
+			},
+			"agents": [
+				{
+					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
+					"agent": {
+						"className": "net.segoia.ogeg.services.status.StatusAppManagerAgent"
+					},
+					"providedServices": [
+						{
+							"serviceDesc": {
+								"serviceId": "statusService",
+								"serviceName": "Status Service",
+								"serviceDesc": "Allows users to see their statuses",
+								"version": 1
+							}
+						}
+					]
+				},
+				{
+					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
+					"agent": {
+						"className": "net.segoia.ogeg.services.chat.agents.ChatManagerAgent"
+					},
+					"providedServices": [
+						{
+							"serviceDesc": {
+								"serviceId": "chatService",
+								"serviceName": "Chat Service",
+								"serviceDesc": "Allows users to chat",
+								"version": 1
+							}
+						}
+					]
+				},
+				{
+					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
+					"agent": {
+						"className": "net.segoia.ogeg.services.core.agents.NodeInteroperabilityAgent",
+						"config": {
+							"upstreamNodes":[
+								{
+									"id": "mainNode",
+									"nodeDef":{
+										"uri":"ws://192.168.10.103:8185/og-node/ws/v1/events",
+										"channel":"WSS_V1"
+									},
+									"nodeSettings":{
+										"autoConnect":true,
+										"autoReconnect":true
+									}
+								}
+								
+							]
+						}
+					},
+					"providedServices": [
+						{
+							"serviceDesc": {
+								"serviceId": "interopService",
+								"serviceName": "Interoperability Service",
+								"serviceDesc": "Allows interobperability with other nodes",
+								"version": 1
+							}
+						}
+					]
+				}
+			]
+		}
+	}
+}

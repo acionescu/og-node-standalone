@@ -1,0 +1,122 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>net.segoia</groupId>
+   <artifactId>og-node-standalone</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <properties>
+      <tomcat.version>8.5.20</tomcat.version>
+      <project.dist.directory>dist</project.dist.directory>
+      <og-node-webapp.version>0.0.1-SNAPSHOT</og-node-webapp.version>
+   </properties>
+   
+ 
+   
+   <build>
+      <sourceDirectory>src</sourceDirectory>
+      
+      <plugins>
+         <plugin>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.5.1</version>
+            <configuration>
+               <source>1.8</source>
+               <target>1.8</target>
+            </configuration>
+         </plugin>
+         
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptor>assembly/dist.xml</descriptor>
+          <outputDirectory>dist</outputDirectory>
+          <finalName>ognode</finalName>
+        </configuration>
+        <executions>
+          <execution>
+            <id>create-archive</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+ <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>2.3.1</version>
+        <configuration>
+          <outputDirectory>${project.build.directory}</outputDirectory>
+          <jarname>og-node</jarname>
+          <finalName>og-node</finalName>
+        </configuration>
+      </plugin>
+
+<plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-dependency-plugin</artifactId>
+       <executions>
+           <execution>
+               <id>copy-dependencies</id>
+               <phase>prepare-package</phase>
+               <goals>
+                   <goal>copy-dependencies</goal>
+               </goals>
+               <configuration>
+                   <outputDirectory>
+                       ${project.build.directory}/libs
+                   </outputDirectory>
+               </configuration>
+           </execution>
+       </executions>
+   </plugin>
+
+      </plugins>
+   </build>
+   <dependencies>
+    <dependency>
+         <groupId>com.google.code.gson</groupId>
+         <artifactId>gson</artifactId>
+         <version>2.7</version>
+      </dependency>
+<!--       <dependency> -->
+<!--          <groupId>javax.websocket</groupId> -->
+<!--          <artifactId>javax.websocket-api</artifactId> -->
+<!--          <version>1.1</version> -->
+<!--       </dependency> -->
+      <dependency>
+         <groupId>org.apache.tomcat.embed</groupId>
+         <artifactId>tomcat-embed-core</artifactId>
+         <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.tomcat.embed</groupId>
+         <artifactId>tomcat-embed-jasper</artifactId>
+         <version>${tomcat.version}</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.tomcat.embed</groupId>
+         <artifactId>tomcat-embed-logging-juli</artifactId>
+         <version>8.5.2</version>
+      </dependency>
+      <dependency>
+         <groupId>org.apache.tomcat</groupId>
+         <artifactId>tomcat-websocket</artifactId>
+         <version>${tomcat.version}</version>
+      </dependency>
+<!--        <dependency> -->
+<!--          <groupId>org.apache.tomcat</groupId> -->
+<!--          <artifactId>tomcat-websocket-api</artifactId> -->
+<!--          <version>${tomcat.version}</version> -->
+<!--       </dependency> -->
+      <dependency>
+         <groupId>net.segoia</groupId>
+         <artifactId>og-node</artifactId>
+         <version>${og-node-webapp.version}</version>
+         <type>war</type>
+      </dependency>
+   </dependencies>
+</project>

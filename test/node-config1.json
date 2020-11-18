@@ -1,0 +1,13 @@
+{
+	"hostName": "0.0.0.0",
+	"port": 8185,
+	"webDir": "/home/adi/ognode/webdir/",
+	"systemConfigs": {
+		"net.segoia.opengroups.node.config": "config/opengroups_node.json"
+	},
+	"apps": {
+		"/og-node": {
+			"docBase": "/home/adi/workspace/projects/og-node/target/og-node-0.0.1-SNAPSHOT.war"
+		}
+	}
+}
