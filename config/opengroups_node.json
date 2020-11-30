@@ -211,8 +211,7 @@
 										"channel":"WSS_V1"
 									},
 									"nodeSettings":{
-										"autoConnect":true,
-										"autoReconnect":true
+										"autoConnect":true
 									}
 								}
 								

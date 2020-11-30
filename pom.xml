@@ -5,17 +5,33 @@
    <groupId>net.segoia</groupId>
    <artifactId>og-node-standalone</artifactId>
    <version>0.0.1-SNAPSHOT</version>
+   
+   <description>A basic Open Groups standalone node</description>
+   <url>https://github.com/acionescu/og-node-standalone</url>
    <properties>
-      <tomcat.version>8.5.20</tomcat.version>
+      <additionalparam>-Xdoclint:none</additionalparam>
+       <tomcat.version>8.5.20</tomcat.version>
       <project.dist.directory>dist</project.dist.directory>
       <og-node-webapp.version>0.0.1-SNAPSHOT</og-node-webapp.version>
    </properties>
+   <licenses>
+      <license>
+         <name>The Apache Software License, Version 2.0</name>
+         <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+         <distribution>repo</distribution>
+      </license>
+   </licenses>
+   <developers>
+      <developer>
+         <id>acionescu</id>
+         <name>Adrian Cristian Ionescu</name>
+         <email>adrian.ionescu.consulting@gmail.com</email>
+      </developer>
+   </developers>
    
- 
    
    <build>
       <sourceDirectory>src</sourceDirectory>
-      
       <plugins>
          <plugin>
             <artifactId>maven-compiler-plugin</artifactId>
@@ -25,59 +41,78 @@
                <target>1.8</target>
             </configuration>
          </plugin>
+         <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <configuration>
+               <descriptor>assembly/dist.xml</descriptor>
+               <outputDirectory>dist</outputDirectory>
+               <finalName>ognode</finalName>
+            </configuration>
+            <executions>
+               <execution>
+                  <id>create-archive</id>
+                  <phase>package</phase>
+                  <goals>
+                     <goal>single</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <version>2.3.1</version>
+            <configuration>
+               <outputDirectory>${project.build.directory}</outputDirectory>
+               <jarname>og-node</jarname>
+               <finalName>og-node</finalName>
+            </configuration>
+         </plugin>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>copy-dependencies</id>
+                  <phase>prepare-package</phase>
+                  <goals>
+                     <goal>copy-dependencies</goal>
+                  </goals>
+                  <configuration>
+                     <outputDirectory> ${project.build.directory}/libs 
+                     </outputDirectory>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
          
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <configuration>
-          <descriptor>assembly/dist.xml</descriptor>
-          <outputDirectory>dist</outputDirectory>
-          <finalName>ognode</finalName>
-        </configuration>
-        <executions>
-          <execution>
-            <id>create-archive</id>
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
- <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-jar-plugin</artifactId>
-        <version>2.3.1</version>
-        <configuration>
-          <outputDirectory>${project.build.directory}</outputDirectory>
-          <jarname>og-node</jarname>
-          <finalName>og-node</finalName>
-        </configuration>
-      </plugin>
-
-<plugin>
-       <groupId>org.apache.maven.plugins</groupId>
-       <artifactId>maven-dependency-plugin</artifactId>
-       <executions>
-           <execution>
-               <id>copy-dependencies</id>
-               <phase>prepare-package</phase>
-               <goals>
-                   <goal>copy-dependencies</goal>
-               </goals>
-               <configuration>
-                   <outputDirectory>
-                       ${project.build.directory}/libs
-                   </outputDirectory>
-               </configuration>
-           </execution>
-       </executions>
-   </plugin>
-
+         <plugin>
+            <groupId>com.mycila</groupId>
+            <artifactId>license-maven-plugin</artifactId>
+            <version>2.11</version>
+            <configuration>
+               <header>license-template.txt</header>
+               <properties>
+                  <owner>Adrian Cristian Ionescu</owner>
+                  <inceptionYear>2020</inceptionYear>
+                  <github>https://github.com/acionescu</github>
+               </properties>
+               <includes>
+                  <include>src/**</include>
+               </includes>
+            </configuration>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>check</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
       </plugins>
    </build>
    <dependencies>
-    <dependency>
+      <dependency>
          <groupId>com.google.code.gson</groupId>
          <artifactId>gson</artifactId>
          <version>2.7</version>
@@ -107,11 +142,6 @@
          <artifactId>tomcat-websocket</artifactId>
          <version>${tomcat.version}</version>
       </dependency>
-<!--        <dependency> -->
-<!--          <groupId>org.apache.tomcat</groupId> -->
-<!--          <artifactId>tomcat-websocket-api</artifactId> -->
-<!--          <version>${tomcat.version}</version> -->
-<!--       </dependency> -->
       <dependency>
          <groupId>net.segoia</groupId>
          <artifactId>og-node</artifactId>
