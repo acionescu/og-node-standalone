@@ -55,9 +55,18 @@ You can also specify a different node to connect to, or even more, if you want y
 
 ### Running the node on Windows
 
-* Install (Git Bash)[https://www.stanleyulili.com/git/how-to-install-git-bash-on-windows/]
+* Install [Git Bash](https://www.stanleyulili.com/git/how-to-install-git-bash-on-windows/)
 * Launch the Git Bash
 * In the git bash window, follow the steps for the linux os, listed above
 
+
+### Accessing the local node webapp
+
+* Open the browser and enter the address <http://localhost:8185/og-node/>
+* To access the chat demo directly, go to <http://localhost:8185/og-node/client/chat.html>
+
+### Accessing the main node
+
+* Open <https://segoia.net/ognode/>
 
 
