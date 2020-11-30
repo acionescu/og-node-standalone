@@ -7,16 +7,16 @@ This node can run on its own and can also connect to other nodes in a federalize
 
 For now, a simple chat demo is implemented. Each server node can join the network and the clients connected to different nodes can talk to each other seamlessly.
 
-### Installing the node
+### Installing your own node
 
 * Download the [current distribution](https://github.com/acionescu/og-node-standalone/dist/ognode-dist.zip)
-* Unzip the archive to a preffered location
+* Unzip the archive to a preferred location
 
 ### Configuring the node
 
 By default, this node will connect to the [main node](https://segoia.net/ognode).
 
-To prevent it from joining the global network, or just make it connect to a custom network, edit the file `opengroups_node.json` as described below:
+To prevent it from joining the global network, or just make it connect to a custom network, edit the file `config/opengroups_node.json` as described below:
 
 In the `agents` section, find the following block:
 
@@ -50,7 +50,7 @@ You can also specify a different node to connect to, or even more, if you want y
 ### Running the node on Linux or other Unix operating systems
 
 * Enter into the `ognode` directory that you unzipped earlier
-* Run `./ognode-start.sh` - the process wil run in the background
+* Run `./ognode-start.sh` - the process will run in the background
 * You can stop it with `./ognode-stop.sh`
 
 ### Running the node on Windows
