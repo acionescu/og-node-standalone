@@ -9,8 +9,9 @@ For now, a simple chat demo is implemented. Each server node can join the networ
 
 ### Installing your own node
 
-* Download the [current distribution](https://github.com/acionescu/og-node-standalone/dist/ognode-dist.zip)
+* Download the [current distribution](https://github.com/acionescu/og-node-standalone/raw/main/dist/ognode-dist.zip)
 * Unzip the archive to a preferred location
+* The archive as the `ognode` folder that contains all the required files
 
 ### Configuring the node
 
@@ -22,23 +23,22 @@ In the `agents` section, find the following block:
 
 ```json
 "agent": {
-						"className": "net.segoia.ogeg.services.core.agents.NodeInteroperabilityAgent",
-						"config": {
-							"upstreamNodes":[
-								{
-									"id": "mainNode",
-									"nodeDef":{
-										"uri":"wss://segoia.net/ognode/ws/v1/events",
-										"channel":"WSS_V1"
-									},
-									"nodeSettings":{
-										"autoConnect":true
-									}
-								}
-								
-							]
-						}
-					}
+	"className": "net.segoia.ogeg.services.core.agents.NodeInteroperabilityAgent",
+	"config": {
+		"upstreamNodes":[
+			{
+				"id": "mainNode",
+				"nodeDef":{
+					"uri":"wss://segoia.net/ognode/ws/v1/events",
+					"channel":"WSS_V1"
+				},
+				"nodeSettings":{
+					"autoConnect":true
+				}
+			}
+		]
+	}
+}
 
 ```
 
