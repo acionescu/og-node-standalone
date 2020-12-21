@@ -68,5 +68,3 @@ You can also specify a different node to connect to, or even more, if you want y
 ### Accessing the main node
 
 * Open <https://segoia.net/ognode/>
-
-
