@@ -24,8 +24,18 @@
 						"className":"net.segoia.event.eventbus.peers.agents.RemotePeersAgent",
 						"channel":"WSS_V1",
 						"autoCreateCondition":{
+							"ctype":"or",
+							"id":"remoteAutoCreationCond",
+							"conditions":[
+							{
 							"className":"net.segoia.event.conditions.StrictEventMatchCondition",
 							"et":"PEER:CHAT:MESSAGE"
+							},
+							{
+							"className":"net.segoia.event.conditions.StrictEventMatchCondition",
+							"et":"DATA:STREAM:PACKET"
+							}
+							]
 						}
 					}
 				]
@@ -185,7 +195,12 @@
 				{
 					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
 					"agent": {
-						"className": "net.segoia.ogeg.services.chat.agents.ChatManagerAgent"
+						"className": "net.segoia.ogeg.services.chat.agents.ChatManagerAgent",
+						"config":{
+							"streamsManagerConfig":{
+								"allowedMainTypes":["video"]
+							}
+						}
 					},
 					"providedServices": [
 						{
