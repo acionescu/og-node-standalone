@@ -228,7 +228,7 @@
 								{
 									"id": "mainNode",
 									"nodeDef":{
-										"uri":"wss://segoia.net/ognode/ws/v1/events",
+										"uri":"wss://ognode.herokuapp.com/ws/v1/events",
 										"channel":"WSS_V1"
 									},
 									"nodeSettings":{
