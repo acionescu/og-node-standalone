@@ -15,7 +15,7 @@ For now, a simple chat demo is implemented. Each server node can join the networ
 
 ### Configuring the node
 
-By default, this node will connect to the [main node](https://segoia.net/ognode).
+By default, this node will connect to the [main node](https://ognode.herokuapp.com/client/chat.html).
 
 To prevent it from joining the global network, or just make it connect to a custom network, edit the file `config/opengroups_node.json` as described below:
 
@@ -29,7 +29,7 @@ In the `agents` section, find the following block:
 			{
 				"id": "mainNode",
 				"nodeDef":{
-					"uri":"wss://segoia.net/ognode/ws/v1/events",
+					"uri":"wss://ognode.herokuapp.com/ws/v1/events",
 					"channel":"WSS_V1"
 				},
 				"nodeSettings":{
@@ -67,4 +67,4 @@ You can also specify a different node to connect to, or even more, if you want y
 
 ### Accessing the main node
 
-* Open <https://segoia.net/ognode/>
+* Open <https://ognode.herokuapp.com/client/chat.html>
