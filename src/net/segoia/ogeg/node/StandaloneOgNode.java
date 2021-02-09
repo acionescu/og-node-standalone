@@ -101,6 +101,8 @@ public class StandaloneOgNode {
 	connector.setProperty("address", config.getHostName());
 
 	System.out.println(tomcat.getHost());
+	
+	setupSSL(tomcat);
 
 	tomcat.getServer().addLifecycleListener(new VersionLoggerListener()); // nice to have
 
@@ -132,5 +134,27 @@ public class StandaloneOgNode {
 	}
 
 	tomcat.getServer().await();
+    }
+    
+    private void setupSSL(Tomcat tomcat) {
+	String keyStorePath = config.getKeyStorePath();
+	if(keyStorePath == null) {
+	    /* ssl is not supported */
+	    return;
+	}
+	Connector sslConnector = new Connector();
+	sslConnector.setPort(config.getSslPort());
+	sslConnector.setSecure(true);
+	sslConnector.setScheme("https");
+	
+	sslConnector.setAttribute("keyAlias", config.getKeyAlias());
+	sslConnector.setAttribute("keystorePass", config.getKeyStorePass());
+	sslConnector.setAttribute("keystoreFile", keyStorePath);
+	sslConnector.setAttribute("clientAuth", "false");
+	sslConnector.setAttribute("sslProtocol", "TLS");
+	sslConnector.setAttribute("SSLEnabled", true);
+	
+	System.out.println("Adding ssl connector on port "+config.getSslPort());
+	tomcat.getService().addConnector(sslConnector);
     }
 }

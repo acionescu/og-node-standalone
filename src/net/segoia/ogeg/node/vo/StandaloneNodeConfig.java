@@ -9,6 +9,15 @@ public class StandaloneNodeConfig {
 
     private Map<String, String> systemConfigs;
     private Map<String, WebappConfig> apps;
+    
+    /**
+     * SSL config
+     */
+    private int sslPort;
+    private String keyStorePath;
+    private String keyStorePass;
+    private String keyStoreType;
+    private String keyAlias;
 
     public String getHostName() {
 	return hostName;
@@ -48,6 +57,46 @@ public class StandaloneNodeConfig {
 
     public void setApps(Map<String, WebappConfig> apps) {
 	this.apps = apps;
+    }
+
+    public int getSslPort() {
+        return sslPort;
+    }
+
+    public void setSslPort(int sslPort) {
+        this.sslPort = sslPort;
+    }
+
+    public String getKeyStorePath() {
+        return keyStorePath;
+    }
+
+    public void setKeyStorePath(String keyStorePath) {
+        this.keyStorePath = keyStorePath;
+    }
+
+    public String getKeyStorePass() {
+        return keyStorePass;
+    }
+
+    public void setKeyStorePass(String keyStorePass) {
+        this.keyStorePass = keyStorePass;
+    }
+
+    public String getKeyStoreType() {
+        return keyStoreType;
+    }
+
+    public void setKeyStoreType(String keyStoreType) {
+        this.keyStoreType = keyStoreType;
+    }
+
+    public String getKeyAlias() {
+        return keyAlias;
+    }
+
+    public void setKeyAlias(String keyAlias) {
+        this.keyAlias = keyAlias;
     }
 
 }

@@ -195,6 +195,30 @@
 				{
 					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
 					"agent": {
+						"className": "net.segoia.ogeg.services.storage.agents.StorageManagerAgent",
+						"config": {
+							"dataStores":{
+								"local": {
+									"id":"local",
+									"key":"local"
+								}
+							}
+						}
+					},
+					"providedServices": [
+						{
+							"serviceDesc": {
+								"serviceId": "storageService",
+								"serviceName": "Storage Service",
+								"serviceDesc": "Allows users to store, retrieve and share files",
+								"version": 1
+							}
+						}
+					]
+				},
+				{
+					"className": "net.segoia.event.eventbus.agents.GlobalAgentRegisterRequest",
+					"agent": {
 						"className": "net.segoia.ogeg.services.chat.agents.ChatManagerAgent",
 						"config":{
 							"streamsManagerConfig":{
@@ -232,7 +256,7 @@
 										"channel":"WSS_V1"
 									},
 									"nodeSettings":{
-										"autoConnect":true
+										"autoConnect":false
 									}
 								}
 								

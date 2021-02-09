@@ -2,6 +2,11 @@
 	"hostName": "0.0.0.0",
 	"port": 8185,
 	"webDir": "webdir",
+	"sslPort":8143,
+	"keyStorePath":"/usr/local/etc/ognode/keystore.p12",
+	"keyStorePass":"2GServer",
+	"keyStoreType":"PKCS12",
+	"keyAlias":"tomcat",
 	"systemConfigs": {
 		"net.segoia.opengroups.node.config": "config/opengroups_node.json"
 	},
