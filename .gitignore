@@ -6,3 +6,4 @@ ognode/
 /bin/
 webdir/
 tomcat*
+dist/

@@ -99,6 +99,8 @@ public class StandaloneOgNode {
 	Connector connector = new Connector("HTTP/1.1");
 	connector.setPort(config.getPort());
 	connector.setProperty("address", config.getHostName());
+	
+	tomcat.getService().addConnector(connector);
 
 	System.out.println(tomcat.getHost());
 	

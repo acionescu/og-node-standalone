@@ -16,6 +16,25 @@
 				"peersConfigs":{
 					"WSS_V1" : {
 						"allowPeerRelays":true
+					},
+					"WSS_WEB_V0": {
+						"peerAuthCondition": {
+							"id": "peerAuthCondWebV0",
+							"et": "EBUS:PEER:AUTH",
+							"params": {
+								"authPass":"Mika&Mira"
+							}
+						}
+					}
+					,
+					"WSS_V0": {
+						"peerAuthCondition": {
+							"id": "peerAuthCondV0",
+							"et": "EBUS:PEER:AUTH",
+							"params": {
+								"authPass":"Mika&Mira"
+							}
+						}
 					}
 				},
 				
@@ -197,6 +216,7 @@
 					"agent": {
 						"className": "net.segoia.ogeg.services.storage.agents.StorageManagerAgent",
 						"config": {
+							"storageDir":"/usr/local/etc/ognode/storage/",
 							"dataStores":{
 								"local": {
 									"id":"local",
