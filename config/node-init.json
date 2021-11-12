@@ -11,8 +11,8 @@
 		"net.segoia.opengroups.node.config": "config/opengroups_node.json"
 	},
 	"apps": {
-		"/og-node": {
-			"docBase": "resources/apps/og-node.war"
+		"/cef-web": {
+			"docBase": "resources/apps/cef-web.war"
 		}
 	}
 }

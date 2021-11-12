@@ -28,7 +28,7 @@
          <directory>${project.build.directory}</directory>
          <outputDirectory>/</outputDirectory>
          <includes>
-            <include>og-node.jar</include>
+            <include>cef-node.jar</include>
          </includes>
       </fileSet>
       <fileSet>
@@ -45,12 +45,30 @@
          </includes>
          <outputDirectory>/</outputDirectory>
       </fileSet>
+      
+      <fileSet>
+         <directory>${cef-bin-dir}</directory>
+         <includes>
+            <include>*.jar</include>
+         </includes>
+         <excludes>
+            <exclude>jcef-tests.jar</exclude>
+         </excludes>
+         <outputDirectory>/cef/libs/</outputDirectory>
+      </fileSet>
+<!--       <fileSet> -->
+<!--          <directory>${cef-bin-dir}/lib</directory> -->
+<!--          <includes> -->
+<!--             <include>**/*</include> -->
+<!--          </includes> -->
+<!--          <outputDirectory>/cef/</outputDirectory> -->
+<!--       </fileSet> -->
    </fileSets>
    <files>
       <file>
-         <source>${project.build.directory}/libs/og-node-${og-node-webapp.version}.war</source>
+         <source>${project.build.directory}/libs/cef-web-${cef-node-webapp.version}.war</source>
          <outputDirectory>resources/apps</outputDirectory>
-         <destName>og-node.war</destName>
+         <destName>cef-web.war</destName>
       </file>
    </files>
 </assembly>
